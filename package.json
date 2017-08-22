@@ -1,0 +1,22 @@
+{
+  "name": "jasmine-awesome-report",
+  "version": "0.0.0",
+  "description": "An awesome report for Jasmine",
+  "main": "./src/awesome.js",
+  "scripts": {
+    "lint": "eslint ./src/**/*.js",
+    "preversion": "npm run lint",
+    "postversion": "git push origin HEAD && git push origin $(git describe --tags) && npm publish"
+  },
+  "author": "aperdomobo@gmail.com (aperdomob)",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0"
+  },
+  "dependencies": {
+    "mochawesome-report-generator": "^2.2.2",
+    "uuid": "^3.1.0"
+  }
+}
