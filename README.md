@@ -8,7 +8,6 @@ Install this project how dev-dependency
 Into jasmine config file include the follow lines:
 
 ```js
-
 const { AwesomeReport } = require('jasmine-awesome-report');
 
 const config = {
@@ -18,3 +17,5 @@ const config = {
 
 jasmine.getEnv().addReporter(AwesomeReport.getReport(config));
 ```
+
+By default `fullPath` is `jasmine-awesome-repor` and fileName is `report`
