@@ -18,4 +18,4 @@ const config = {
 jasmine.getEnv().addReporter(AwesomeReport.getReport(config));
 ```
 
-By default `fullPath` is `jasmine-awesome-repor` and `fileName` is `report`
+By default `fullPath` is `jasmine-awesome-report` and `fileName` is `report`
