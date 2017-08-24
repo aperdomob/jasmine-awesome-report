@@ -12,10 +12,16 @@ const { AwesomeReport } = require('jasmine-awesome-report');
 
 const config = {
   fullPath: 'awesome-report',
-  fileName: 'report'
+  fileName: 'report',
+  merge: true
 };
 
 jasmine.getEnv().addReporter(AwesomeReport.getReport(config));
 ```
 
-By default `fullPath` is `jasmine-awesome-report` and `fileName` is `report`
+| Property | Default value | Description |
+| -------- | :-----------: | ----------- |
+| fullPath | awesome-report | folder when the report will be saved |
+| fileName | report | report file name |
+| merge | false | merge the result with other json with the same name |
+
