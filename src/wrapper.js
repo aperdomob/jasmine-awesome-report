@@ -192,4 +192,41 @@ function generateJson(jsonBase) {
   return result;
 }
 
+function mergeJson(firstJson, secondJson) {
+  const result = Object.assign({}, firstJson);
+
+  const firstStart = new Date(firstJson.stats.start);
+  const secondStart = new Date(secondJson.stats.start);
+
+  const firstEnd = new Date(firstJson.stats.end);
+  const secondEnd = new Date(secondJson.stats.end);
+
+  const passes = result.stats.passes + secondJson.stats.passes;
+  const failures = result.stats.failures + secondJson.stats.failures;
+  const pending = result.stats.pending + secondJson.stats.pending;
+  const testsRegistered = result.stats.testsRegistered + secondJson.stats.testsRegistered;
+
+  result.stats.suites += secondJson.stats.suites;
+  result.stats.tests += secondJson.stats.tests;
+  result.stats.passes = passes;
+  result.stats.pending = pending;
+  result.stats.failures = failures;
+  result.stats.start = firstStart < secondStart ? firstStart : secondStart;
+  result.stats.end = firstEnd > secondEnd ? firstEnd : secondEnd;
+  result.stats.duration = diff(result.stats.start, result.stats.end);
+  result.stats.testsRegistered = testsRegistered;
+  result.stats.passPercent = Number(((passes / (passes + failures)) * 100).toFixed(2));
+  result.stats.pendingPercent = Number(((pending / testsRegistered) * 100).toFixed(2));
+
+  result.suites.suites = result.suites.suites.concat(secondJson.suites.suites);
+  result.allTests = result.allTests.concat(secondJson.allTests);
+  result.allPending = result.allPending.concat(secondJson.allPending);
+  result.allPasses = result.allPasses.concat(secondJson.allPasses);
+  result.allFailures = result.allFailures.concat(secondJson.allFailures);
+
+  return result;
+}
+
 exports.generateJson = generateJson;
+exports.mergeJson = mergeJson;
+

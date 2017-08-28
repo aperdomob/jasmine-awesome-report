@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const marge = require('mochawesome-report-generator');
-const { generateJson } = require('./wrapper');
+const { generateJson, mergeJson } = require('./wrapper');
 
 const removeParent = (tree) => {
   // eslint-disable-next-line no-param-reassign
@@ -59,10 +59,21 @@ class AwesomeReport {
         currentSuite.end = new Date();
         currentSuite.failedExpectations = result.failedExpectations;
 
-        const report = generateJson(currentSuite);
+        let report = generateJson(currentSuite);
 
         const reportDir = config && config.fullPath ? config.fullPath : 'jasmine-awesome-report';
         const reportFilename = config && config.fileName ? config.fileName : 'report';
+        const merge = config && config.merge ? config.merge : false;
+
+        const fullJsonName = path.normalize(path.join(reportDir, `${reportFilename}.json`));
+
+        if (merge && fs.existsSync(fullJsonName)) {
+          const absolutePath = path.resolve(fullJsonName);
+          // eslint-disable-next-line global-require, import/no-dynamic-require
+          const fileJson = require(absolutePath);
+
+          report = mergeJson(report, fileJson);
+        }
 
         marge.createSync(report, {
           reportDir,
