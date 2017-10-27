@@ -3,9 +3,11 @@
   "version": "0.0.0-development",
   "description": "An awesome report for Jasmine",
   "main": "./src/awesome.js",
+  "bin": "config/bin.js",
   "scripts": {
     "lint": "eslint ./src/**/*.js",
-    "preversion": "npm run lint",
+    "build": "pkg-ok bin && npm run lint",
+    "preversion": "npm run build",
     "postversion": "git push origin HEAD && git push origin $(git describe --tags) && npm publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
@@ -15,6 +17,8 @@
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0",
+    "pkg-ok": "^1.1.0",
+    "please-upgrade-node": "^3.0.1",
     "semantic-release": "^7.0.2"
   },
   "dependencies": {
