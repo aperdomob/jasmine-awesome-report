@@ -4,6 +4,7 @@
   "description": "An awesome report for Jasmine",
   "main": "./src/awesome.js",
   "bin": "config/bin.js",
+  "engines": { "node": ">=6" },
   "scripts": {
     "lint": "eslint ./src/**/*.js",
     "build": "pkg-ok bin && npm run lint",
