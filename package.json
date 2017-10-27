@@ -3,6 +3,9 @@
   "version": "0.0.0-development",
   "description": "An awesome report for Jasmine",
   "main": "./src/awesome.js",
+  "engines": {
+    "node": ">=6"
+  },
   "config": {
     "commitizen": {
       "path": "@commitlint/prompt"
@@ -12,9 +15,11 @@
     "commit": "git-cz",
     "commitmsg": "validate-commit-msg && npm run lint",
     "lint": "eslint ./src/**/*.js",
+    "build": "pkg-ok && npm run lint",
+    "pretest": "npm run build",
     "test": "nyc --reporter=html --reporter=text mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "preversion": "npm run lint",
+    "preversion": "npm run build",
     "postversion": "git push origin HEAD && git push origin $(git describe --tags) && npm publish",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
@@ -33,6 +38,7 @@
     "husky": "^0.14.3",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
+    "pkg-ok": "^1.1.0",
     "semantic-release": "^7.0.2",
     "sinon": "^3.2.1",
     "validate-commit-msg": "^2.14.0"
