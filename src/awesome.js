@@ -21,6 +21,7 @@ const saveFile = (fullPath, fileName, json) => {
 class AwesomeReport {
   static getReport(config) {
     let currentSuite;
+    let currentTest;
     let json;
 
     return {
@@ -41,11 +42,10 @@ class AwesomeReport {
         currentSuite = node;
       },
       specStarted: (result) => {
-        // eslint-disable-next-line no-param-reassign
-        result.start = new Date();
+        currentTest = Object.assign({}, result, { start: new Date() });
       },
       specDone: (result) => {
-        const node = Object.assign({}, result, { end: new Date() });
+        const node = Object.assign({}, result, currentTest, { end: new Date() });
 
         currentSuite.tests.push(node);
       },
