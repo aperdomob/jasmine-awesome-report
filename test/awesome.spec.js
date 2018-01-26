@@ -83,23 +83,27 @@ describe('Given a jasmine execution', () => {
             assert.deepEqual(testResult, objectStub.getCall(2).args[1]);
             assert.deepEqual({
               end: jasmineStartDate
-            }, objectStub.getCall(2).args[2]);
+            }, objectStub.getCall(2).args[3]);
           });
         });
       });
-    });
 
-    describe('when start a test', () => {
-      const testStartDate = new Date('2017-08-29T21:48:13.023Z');
-      const test = {};
+      describe('when start a test', () => {
+        const testStartDate = new Date('2017-08-29T21:48:13.023Z');
+        const test = {
 
-      before(() => {
-        sandboxInstance.useFakeTimers(testStartDate);
-        report.specStarted(test);
-      });
+        };
 
-      it('then should be start property', () => {
-        assert.deepEqual(testStartDate, test.start);
+        before(() => {
+          sandboxInstance.useFakeTimers(testStartDate);
+          report.specStarted(test);
+        });
+
+        it('then should be start property', () => {
+          assert.deepEqual(objectStub.getCall(0).args[0], {});
+          assert.deepEqual(objectStub.getCall(0).args[1], startedParam);
+          assert.deepEqual(objectStub.getCall(0).args[2].start, testStartDate);
+        });
       });
     });
   });
