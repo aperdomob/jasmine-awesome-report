@@ -4,7 +4,7 @@
 
 [![NPM](https://nodei.co/npm/jasmine-awesome-report.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/semantic-release/)
 
-# Jasmine Aweson Report
+# Jasmine Awesome Report
 This project is inspired in [mochawesome](https://github.com/adamgruber/mochawesome).
 
 ## How to Use
