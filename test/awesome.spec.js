@@ -1,6 +1,6 @@
 const chai = require('chai');
 const { AwesomeReport } = require('../src/awesome');
-const { sandbox } = require('sinon');
+const sinon = require('sinon');
 
 const assert = chai.assert;
 
@@ -8,7 +8,7 @@ describe('Given a jasmine execution', () => {
   let sandboxInstance;
 
   beforeEach(() => {
-    sandboxInstance = sandbox.create();
+    sandboxInstance = sinon.createSandbox();
   });
 
   afterEach(() => {

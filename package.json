@@ -40,7 +40,7 @@
     "nyc": "^11.1.0",
     "pkg-ok": "^1.1.0",
     "semantic-release": "^17.3.3",
-    "sinon": "^3.2.1",
+    "sinon": "^9.2.3",
     "validate-commit-msg": "^2.14.0"
   },
   "dependencies": {
