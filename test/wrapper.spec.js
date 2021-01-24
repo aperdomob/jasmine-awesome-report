@@ -1,7 +1,7 @@
 const chai = require('chai');
 const uuid = require('uuid');
 const { generateJson } = require('../src/wrapper');
-const { sandbox } = require('sinon');
+const sinon = require('sinon');
 
 const assert = chai.assert;
 
@@ -12,7 +12,7 @@ describe('Given a json report', () => {
   let sandboxInstance;
 
   before(() => {
-    sandboxInstance = sandbox.create();
+    sandboxInstance = sinon.createSandbox();
     const uuidStub = sandboxInstance.stub(uuid, 'v4');
     uuidStub.onCall(0).returns('c357897e-3a0e-4351-9fa7-0a766ff7e619');
   });
