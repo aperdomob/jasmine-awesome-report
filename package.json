@@ -19,9 +19,7 @@
     "pretest": "npm run build",
     "test": "nyc --reporter=html --reporter=text mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "preversion": "npm run build",
-    "postversion": "git push origin HEAD && git push origin $(git describe --tags) && npm publish",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release"
   },
   "author": "aperdomobo@gmail.com (aperdomob)",
   "license": "MIT",
@@ -39,7 +37,7 @@
     "mocha": "^8.2.1",
     "nyc": "^15.1.0",
     "pkg-ok": "^1.1.0",
-    "semantic-release": "^17.3.3",
+    "semantic-release": "^17.3.7",
     "sinon": "^9.2.3",
     "validate-commit-msg": "^2.14.0"
   },
